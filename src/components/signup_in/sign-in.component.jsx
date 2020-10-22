@@ -12,7 +12,6 @@ const api = process.env.REACT_APP_API_SIGN_IN;
 
 axios.interceptors.request.use(
   (config) => {
-
     const token = localStorage.getItem('token');
       config.headers.authorization = `Bearer ${token}`;
     return config;

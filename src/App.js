@@ -1,9 +1,9 @@
 import React, { useContext} from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import {
   Route, Switch, Redirect, BrowserRouter,
 } from 'react-router-dom';
+import ReactDOM from "react-dom";
 import SignInAndUp from './pages/sign/sign.component';
 import Header from './components/header/header.component';
 import QuizPage from './pages/createQuiz/createQuiz.page';
@@ -15,20 +15,6 @@ import UpdateQuiz from './pages/updateQuiz/updateQuiz.page';
 import { store } from './store/store';
 const App = () => {
   const globalState = useContext(store);
-  // const globalQuestionState = useContext(questionStore);
-  // const handleLogin = (data) => {
-  //   setUserAuth({
-  //     login: true,
-  //     userData: data,
-  //   });
-  // };
-  // useEffect(async () => { // runs right after the first render
-  //     const usersData = await axios('https://jsonplaceholder.typicode.com/users');
-  //     // console.log(users.data);
-  //     this.setState({ users: usersData.data });
-  //     console.log(this.dogs)
-  //   })
-  // const changeDog = shuffle(dog);
   return (
     <BrowserRouter>
       <Header />
