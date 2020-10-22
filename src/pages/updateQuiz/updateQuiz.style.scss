@@ -1,0 +1,64 @@
+.questionOptions {
+    // position: relative;
+    // position: absolute;
+    width: auto;
+    height: 200px;
+
+    .cross {
+        // position: absolute;
+        float: left;
+        width: fit-content;
+
+        .delete {
+            // width: 20px;
+            position: fixed;
+            z-index: 100;
+            position: absolute;
+            float: left;
+            padding: 0px 0px 0px 20px;
+            display: inline;
+            color: inherit;
+            opacity: 0;
+            transition: opacity 0.5s linear;
+            -moz-transition: opacity 0.5s linear;
+            -webkit-transition: opacity 0.5s linear;
+
+            .fontIcon {
+                pointer-events: none;
+                z-index: -1;
+            }
+        }
+
+        :hover .delete {
+            opacity: 1;
+            transition: opacity 0.5s linear;
+            -moz-transition: opacity 0.5s linear;
+            -webkit-transition: opacity 0.5s linear;
+        }
+
+    }
+}
+
+.form-container {
+    position: relative;
+    width: auto;
+
+    align-items: center;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+
+    .changeQuestionForm {
+        // float: left;#
+        border: 3px solid;
+        border-radius: 10px;
+        height: auto;
+        position: absolute;
+        text-align: center;
+        align-items: center;
+
+        .inputField {
+            margin: 10px;
+        }
+    }
+}

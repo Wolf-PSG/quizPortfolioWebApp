@@ -1,0 +1,43 @@
+
+
+.form-input-material {
+  --input-default-border-color: white;
+  --input-border-bottom-color: white;
+  
+  input {
+    // color: white;
+  }
+}
+
+.question-form {
+  justify-content: center;
+  min-height: 100vh;
+  width: 50%;
+  display: flex;
+  position: relative;
+  left: 23%;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 40px;
+  color: white;
+  background: linear-gradient(to right, #bdc3c7, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border-radius: 10px;
+  box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109),
+    0 1px 1px rgba(128, 128, 128, 0.155),
+    0 2.1px 2.1px rgba(128, 128, 128, 0.195),
+    0 4.4px 4.4px rgba(128, 128, 128, 0.241),
+    0 12px 12px rgba(128, 128, 128, 0.35);
+
+  h1 {
+    margin: 0 0 24px 0;
+  }
+
+  .form-input-material {
+    margin: 12px 0;
+  }
+
+  .btn {
+    width: 50%;
+    margin: 18px 0 9px 0;
+  }
+}

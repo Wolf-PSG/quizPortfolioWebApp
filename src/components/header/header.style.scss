@@ -1,0 +1,81 @@
+.header {
+	height: 70px;
+	// width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 25px;
+	background: grey;
+	position: relative;
+	border-bottom: 5px double #2c3e50;
+
+	.logo-container {
+		height: 100%;
+		width: 70px;
+		padding: 25px;
+	}
+
+	.options {
+		width: 50%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		position: absolute;
+		left: 50%;
+
+
+		.option {
+			// padding: 10px 15px;
+			background: #2c3e50;
+			height: 50px;
+			min-width: 100px;
+			border: none;
+			border-radius: 50px;
+			color: #eee;
+			position: relative;
+			transition: 3s;
+			-webkit-tap-highlight-color: transparent;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			padding-top: 5px;
+			margin-right: 25px;
+			// padding:
+		}
+		.option #circle {
+			width: 5px;
+			height: 5px;
+			background: transparent;
+			border-radius: 50%;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			overflow: hidden;
+			transition: 500ms;
+		}
+		
+		.noselect {
+			-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				 -khtml-user-select: none;
+					 -moz-user-select: none;
+						-ms-user-select: none;
+								user-select: none;
+		}
+		
+		.option:hover {
+			background: transparent;
+		}
+		
+		.option:hover #circle {
+			height: 50px;
+			width: 150px;
+			left: 0;
+			border-radius: 0;
+			border-bottom: 2px solid #2c3e50;
+		}
+		
+	}
+}
+
