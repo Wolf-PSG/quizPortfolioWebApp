@@ -68,7 +68,7 @@ module.exports = {
     }),
     new Serve({ static: outputPath }),
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify('process.env')
+      'process.env': JSON.stringify('production')
     }),
     // new FaviconsWebpackPlugin()
 
