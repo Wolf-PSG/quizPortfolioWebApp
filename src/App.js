@@ -50,7 +50,6 @@ const App = () => {
 
       </Switch>
     </BrowserRouter>
-
   );
 };
 export default App;
