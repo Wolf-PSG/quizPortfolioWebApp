@@ -4,8 +4,8 @@ import { store } from '../../store/store';
 import './dashboard.style.scss';
 import Card from '../../components/card/card.component';
 
-const quizAPI = process.env.REACT_APP_API_QUIZ
 const DashBoard = () => {
+  const quizAPI = process.env.REACT_APP_API_QUIZ
   const [titles, setTitles] = useState([]);
   const [id, setId] = useState([]);
   const globalState = useContext(store);

@@ -6,11 +6,11 @@ import { faTimes} from '@fortawesome/free-solid-svg-icons';
 import './updateQuiz.style.scss';
 import axios from 'axios';
 
-const quizAPI = process.env.REACT_APP_API_QUIZ;
-const questionsAPI = process.env.REACT_APP_API_QUESTION;
-const uploadAPI = process.env.REACT_APP_API_UPLOADS
 
 const UpdateQuiz = () => {
+  const quizAPI = process.env.REACT_APP_API_QUIZ;
+  const questionsAPI = process.env.REACT_APP_API_QUESTION;
+  const uploadAPI = process.env.REACT_APP_API_UPLOADS
   const history = useHistory();
   const isInitialMount = useRef(true);
   const isFileChanged = useRef(true);

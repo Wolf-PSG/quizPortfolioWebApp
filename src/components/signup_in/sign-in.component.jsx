@@ -8,7 +8,6 @@ import { store } from '../../store/store';
 // import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
 import './sign-in.style.scss';
 
-const api = process.env.REACT_APP_API_SIGN_IN;
 
 axios.interceptors.request.use(
   (config) => {
@@ -20,6 +19,8 @@ axios.interceptors.request.use(
 );
 
 const SignIn = (props) => {
+  const api = process.env.REACT_APP_API_SIGN_IN;
+
   const globalState = useContext(store);
   const { dispatch } = globalState;
   const history = useHistory();

@@ -5,9 +5,6 @@ import './create-form.style.scss';
 // first monitor comment -- wow 
 //she told me put my heart in the bag and nobdy gets hurt
 
-const api = process.env.REACT_APP_API_QUESTION;
-const uploadAPI = process.env.REACT_APP_API_UPLOADS
-
 axios.interceptors.request.use(
   async (config) => {
     const token = localStorage.getItem('token');
@@ -17,6 +14,9 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 const CreateQuestion = (state) => {
+  const api = process.env.REACT_APP_API_QUESTION;
+  const uploadAPI = process.env.REACT_APP_API_UPLOADS
+
   const {id} = state.location.state;
   const history = useHistory();
   const [post, setPost] = useState({

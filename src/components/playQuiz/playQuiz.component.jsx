@@ -3,9 +3,9 @@ import axios from 'axios';
 import Play from './play.component';
 // import './playQuiz.style.scss';
 
-const quizAPI = process.env.REACT_APP_API_QUIZ;
 
 const PlayQuiz = () => {
+  const quizAPI = process.env.REACT_APP_API_QUIZ;
   const [quiz, setQuiz] = useState({
     title: '',
     questions: [],

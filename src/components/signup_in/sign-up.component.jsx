@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './sign-up.styles.scss';
 
-const api = process.env.REACT_APP_API_SIGN_UP;
 
 const SignUp = () => {
+  const api = process.env.REACT_APP_API_SIGN_UP;
   const [post, setPost] = useState({
     name: '',
     email: '',

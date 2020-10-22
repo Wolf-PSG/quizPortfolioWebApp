@@ -4,7 +4,6 @@ import axios from 'axios';
 import './create-form.style.scss';
 import { store } from '../../store/store';
 
-const quizAPI = process.env.REACT_APP_API_QUIZ;
 
 axios.interceptors.request.use(
   async (config) => {
@@ -16,6 +15,7 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 const CreateQuizTitle = () => {
+  const quizAPI = process.env.REACT_APP_API_QUIZ;
   const history = useHistory();
   const globalUserState = useContext(store);
 
