@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -8,6 +10,7 @@ module.exports = {
   output: {
     path: `${__dirname}/dist`,
     filename: 'bundle.js',
+
   },
   module: {
     rules: [
@@ -15,6 +18,13 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
+        // options: {
+        //   presets: ["react", "es2015", "stage-1"]
+        // },
+      },
+       {
+        test: /\.html$/i,
+        loader: 'html-loader',
       },
       {
         test: /\.s[ac]ss$/i,
@@ -27,6 +37,9 @@ module.exports = {
           'sass-loader',
         ],
       },
+       {
+      test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+      loader: 'url-loader?limit=100000' },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
@@ -43,16 +56,12 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      filename: "./index.html"
+    }),
+    // new FaviconsWebpackPlugin()
+
     // new MiniCssExtractPlugin({ filename: isDevelopment ? '[name].css' : '[name].[hash].css', chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css' }),
   ],
-  devServer: {
-    contentBase: './dist',
-    hot: true,
-    watchOptions: {
-      ignored: [
-        path.resolve(__dirname, 'public'),
-      ]
-    }
-  }
 };
