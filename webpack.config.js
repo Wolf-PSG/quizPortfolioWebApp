@@ -67,9 +67,6 @@ module.exports = {
       chunkFilename: "[id].css"
     }),
     new Serve({ static: outputPath }),
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify('.env')
-    }),
     // new FaviconsWebpackPlugin()
 
     // new MiniCssExtractPlugin({ filename: isDevelopment ? '[name].css' : '[name].[hash].css', chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css' }),
