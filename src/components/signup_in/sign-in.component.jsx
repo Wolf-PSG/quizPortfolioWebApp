@@ -19,7 +19,6 @@ axios.interceptors.request.use(
 );
 
 const SignIn = (props) => {
-  const api = process.env.REACT_APP_API_SIGN_IN;
 
   const globalState = useContext(store);
   const { dispatch } = globalState;
@@ -44,7 +43,7 @@ const SignIn = (props) => {
     e.preventDefault();
 
     try {
-      await axios.post(api, post).then((res) => {
+      await axios.post(process.env.REACT_APP_API_SIGN_IN, post).then((res) => {
         localStorage.setItem('token', res.data.token);
         // setJwt(res.data.token);
         // console.log(res);
