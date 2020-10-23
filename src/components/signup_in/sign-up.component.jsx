@@ -4,7 +4,6 @@ import './sign-up.styles.scss';
 
 
 const SignUp = () => {
-  const api = process.env.REACT_APP_API_SIGN_UP;
   const [post, setPost] = useState({
     name: '',
     email: '',

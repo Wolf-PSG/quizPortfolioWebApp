@@ -9,13 +9,11 @@ axios.interceptors.request.use(
   async (config) => {
     const token = localStorage.getItem('token');
     config.headers.authorization = `Bearer ${token}`;
-    console.log(config);
     return config;
   },
   (error) => Promise.reject(error),
 );
 const CreateQuizTitle = () => {
-  const quizAPI = process.env.REACT_APP_API_QUIZ;
   const history = useHistory();
   const globalUserState = useContext(store);
 
@@ -38,7 +36,6 @@ const CreateQuizTitle = () => {
     e.preventDefault();
     const {title, user } = quizPost;
     const newPost = {title, user}
-    console.log(newPost);
     axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz', newPost).then((res) => {
     const {id} = res.data.data.data
     history.push({

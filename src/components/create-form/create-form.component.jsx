@@ -70,9 +70,7 @@ const CreateQuestion = (state) => {
   };
 
   const handleFileChange = (e) => {
-    console.log(e.target.files);
     const image = e.target.files[0];
-    console.log(image);
     setFile(image);
     setImageState(URL.createObjectURL(image));
   }

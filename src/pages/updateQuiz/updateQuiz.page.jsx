@@ -25,23 +25,18 @@ const UpdateQuiz = () => {
     async function getQuiz() {
       const {pathname} = window.location;
       const searchID = pathname.split('/updateQuiz/');
-      console.log(searchID)
-      const Quiz = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz}/${searchID[1]}`);
-      console.log(Quiz)
+      const Quiz = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz/${searchID[1]}`);
       const {title, id} = Quiz.data.data.doc
       setQuiz({title: title, id: id});
     }
     getQuiz();
-    console.log("Quiz useEffect Reload")
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     async function getQuestions() {
       if (quiz.id !== '') {
-      const questionsArray = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question?quizID=${quiz.id}`)
-      console.log('question get axios')
-      console.log(questionsArray.data.data.doc)
+      const questionsArray = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question?quizID=${quiz.id}`);
       questionsArray.data.data.doc.forEach( (element , i) => {
         const { quizID, image, question, answerSelectionFour,answerSelectionThree,answerSelectionTwo,answerSelectionOne, correctAnswer, _id } = element;
         setQuestions(values => [ ...values, {quizID: quizID[0].id, id:_id, image:image, question:question, answerSelectionOne: answerSelectionOne, answerSelectionTwo:answerSelectionTwo, answerSelectionThree: answerSelectionThree, answerSelectionFour: answerSelectionFour, correctAnswer:correctAnswer}]);

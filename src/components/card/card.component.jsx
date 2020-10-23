@@ -5,7 +5,6 @@ import './card.component.scss';
 
 const Card = (props) => {
   const { titles, id } = props;
-  console.log(props)
   return (
     <div className="quiz-collections" key={id}>
       <Link

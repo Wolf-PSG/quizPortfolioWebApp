@@ -15,9 +15,7 @@ const PlayQuiz = () => {
       const id = param.split('=');
       const Quiz = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz?_id=${id[1]}`);
       const { doc } = Quiz.data.data;
-      console.log(doc[0]);
       const quizDoc = doc[0];
-      console.log(quizDoc.questions);
       setQuiz({ ...quiz, title: quizDoc.title, questions: quizDoc.questions});
     }
     getQuiz();

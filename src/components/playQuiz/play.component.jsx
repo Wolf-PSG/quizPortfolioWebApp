@@ -72,7 +72,6 @@ const Play = (props) => {
       }
     }
   };
-  console.log(`Image state: ${questionState.image}`)
 
   return (
     <div onClick={(e) => (console.log(e.target.className))}>
