@@ -3,7 +3,7 @@ const {join} = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { WebpackPluginServe: Serve } = require('webpack-plugin-serve');
-const outputPath = join(process.cwd(), '/build');
+const outputPath = join(process.cwd(), './build');
 
 // const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
@@ -11,10 +11,10 @@ const outputPath = join(process.cwd(), '/build');
 
 module.exports = {
   entry: ['babel-polyfill', './src/index.js'],
-  output: {
-    path: join(__dirname, "build"),
-    filename: "bundle.js"
-  },
+  // output: {
+  //   path: join(__dirname, "build"),
+  //   filename: "bundle.js"
+  // },
   module: {
     rules: [
       {
@@ -50,7 +50,9 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
   },
     output: {
-    path: outputPath
+    path: outputPath,
+    filename: "bundle.js"
+
   },
   // output: {
   //   path: `${__dirname}/dist`,
