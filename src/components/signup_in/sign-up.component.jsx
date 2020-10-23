@@ -30,6 +30,8 @@ const SignUp = () => {
   return (
     <form className="sign-up-form" onSubmit={handleSubmit}>
       <h2 className="title"> Don't Have an Account? </h2>
+          <h2> {api}</h2>
+
       <span> Sign up with email and password </span>
       <label> name </label>
       <input

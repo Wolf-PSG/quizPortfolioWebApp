@@ -128,7 +128,6 @@ const UpdateQuiz = () => {
   return (
     <div>
     <h2> {quiz.title} </h2>
-
     <div className="questionOptions">
       { questions.map((element , i) => {
         const {question} = element;
