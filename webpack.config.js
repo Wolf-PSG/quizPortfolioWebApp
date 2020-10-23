@@ -10,7 +10,7 @@ const outputPath = join(process.cwd(), '/build');
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin'); join(__dirname, "src", "index.js")
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: join(__dirname, "build"),
     filename: "bundle.js"
@@ -71,5 +71,5 @@ module.exports = {
 
     // new MiniCssExtractPlugin({ filename: isDevelopment ? '[name].css' : '[name].[hash].css', chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css' }),
   ],
-  // watch: true,
+  watch: true,
 };
