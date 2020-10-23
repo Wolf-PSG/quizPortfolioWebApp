@@ -3,7 +3,7 @@ const {join} = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { WebpackPluginServe: Serve } = require('webpack-plugin-serve');
-const outputPath = join(process.cwd(), '/dist');
+const outputPath = join(process.cwd(), '/build');
 
 // const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
@@ -25,12 +25,12 @@ module.exports = {
         //   presets: ["react", "es2015", "stage-1"]
         // },
       },
-       {
-        test: /\.html$/i,
-        use: [{        
-          loader: 'html-loader',
-        }]
-      },
+      //  {
+      //   test: /\.html$/i,
+      //   use: [{        
+      //     loader: 'html-loader',
+      //   }]
+      // },
      {
         test: /.(css|scss)$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
@@ -71,5 +71,5 @@ module.exports = {
 
     // new MiniCssExtractPlugin({ filename: isDevelopment ? '[name].css' : '[name].[hash].css', chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css' }),
   ],
-  watch: true,
-}
+  // watch: true,
+};
