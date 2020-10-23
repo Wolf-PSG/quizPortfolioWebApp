@@ -14,9 +14,6 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 const CreateQuestion = (state) => {
-  const api = process.env.REACT_APP_API_QUESTION;
-  const uploadAPI = process.env.REACT_APP_API_UPLOADS
-
   const {id} = state.location.state;
   const history = useHistory();
   const [post, setPost] = useState({
@@ -34,7 +31,7 @@ const CreateQuestion = (state) => {
 
   useEffect(() => {
     if (image !== '' && question !== '' && answerSelectionOne !== '' && answerSelectionTwo !== '' ) {
-      axios.post(api, post)
+      axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/question', post)
       .then(res => setQuizPost([...quizPost, res.data.id]))
       .catch(err => {console.log(err)});
       setPost({    
@@ -62,7 +59,7 @@ const CreateQuestion = (state) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('photo', file);
-    let res = await axios.post(uploadAPI, formData);
+    let res = await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/uploads', formData);
     setPost({...post, image:res.data.file});
   };
 

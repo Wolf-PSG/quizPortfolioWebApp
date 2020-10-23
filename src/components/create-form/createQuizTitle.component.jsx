@@ -39,7 +39,7 @@ const CreateQuizTitle = () => {
     const {title, user } = quizPost;
     const newPost = {title, user}
     console.log(newPost);
-    axios.post(quizAPI, newPost).then((res) => {
+    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz', newPost).then((res) => {
     const {id} = res.data.data.data
     history.push({
       pathname:"/createQuizzes",

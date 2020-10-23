@@ -43,14 +43,13 @@ const SignIn = (props) => {
     e.preventDefault();
 
     try {
-      await axios.post('https://quiz-maker-psg.netlify.app/api/v1/users/login', post).then((res) => {
+      await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/users/login', post).then((res) => {
         localStorage.setItem('token', res.data.token);
         // setJwt(res.data.token);
         // console.log(res);
         handleSuccess(res.data);
       }).catch((err) => console.log(err));
 
-      // .then((res) => { console.log(res); }).catch((err) => { console.log(err); });
     } catch (error) {
       console.error(error);
     }

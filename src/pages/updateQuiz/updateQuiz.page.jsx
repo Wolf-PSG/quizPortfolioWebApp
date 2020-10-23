@@ -8,9 +8,6 @@ import axios from 'axios';
 
 
 const UpdateQuiz = () => {
-  const quizAPI = process.env.REACT_APP_API_QUIZ;
-  const questionsAPI = process.env.REACT_APP_API_QUESTION;
-  const uploadAPI = process.env.REACT_APP_API_UPLOADS
   const history = useHistory();
   const isInitialMount = useRef(true);
   const isFileChanged = useRef(true);
@@ -29,7 +26,7 @@ const UpdateQuiz = () => {
       const {pathname} = window.location;
       const searchID = pathname.split('/updateQuiz/');
       console.log(searchID)
-      const Quiz = await axios.get(`${quizAPI}/${searchID[1]}`);
+      const Quiz = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz}/${searchID[1]}`);
       console.log(Quiz)
       const {title, id} = Quiz.data.data.doc
       setQuiz({title: title, id: id});
@@ -42,7 +39,7 @@ const UpdateQuiz = () => {
   useEffect(() => {
     async function getQuestions() {
       if (quiz.id !== '') {
-      const questionsArray = await axios.get(`${questionsAPI}?quizID=${quiz.id}`)
+      const questionsArray = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question?quizID=${quiz.id}`)
       console.log('question get axios')
       console.log(questionsArray.data.data.doc)
       questionsArray.data.data.doc.forEach( (element , i) => {
@@ -60,7 +57,7 @@ const UpdateQuiz = () => {
       isInitialMount.current = false;
     } else {
       if (!isFileChanged.current) {
-        await axios.patch(`${questionsAPI}/${question.id}`, question)
+        await axios.patch(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question/${question.id}`, question)
       }
     }
     }
@@ -80,7 +77,7 @@ const UpdateQuiz = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('photo', file);
-    let res = await axios.post(uploadAPI, formData);
+    let res = await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/uploads', formData);
     setQuestion({...question, image:res.data.file});
     isFileChanged.current = false;
   };
@@ -90,14 +87,14 @@ const UpdateQuiz = () => {
     if (!imageState.file) {
       handleFileUpload(e)
     } else {
-      await axios.patch(`${questionsAPI}/${question.id}`, question)
+      await axios.patch(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question/${question.id}`, question)
     }
     // window.location.reload();
   }
 
   const handleDelete = (e) => {
     const {id} = e.currentTarget;
-    axios.delete(`${questionsAPI}/${id}`);
+    axios.delete(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question/${id}`);
     window.location.reload();
   }
 

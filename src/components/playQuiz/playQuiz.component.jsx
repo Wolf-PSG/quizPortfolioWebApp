@@ -5,7 +5,6 @@ import Play from './play.component';
 
 
 const PlayQuiz = () => {
-  const quizAPI = process.env.REACT_APP_API_QUIZ;
   const [quiz, setQuiz] = useState({
     title: '',
     questions: [],
@@ -14,7 +13,7 @@ const PlayQuiz = () => {
     async function getQuiz() {
       const param = window.location.search;
       const id = param.split('=');
-      const Quiz = await axios.get(`${quizAPI}?_id=${id[1]}`);
+      const Quiz = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz?_id=${id[1]}`);
       const { doc } = Quiz.data.data;
       console.log(doc[0]);
       const quizDoc = doc[0];

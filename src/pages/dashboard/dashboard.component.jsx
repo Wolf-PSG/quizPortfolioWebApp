@@ -5,14 +5,13 @@ import './dashboard.style.scss';
 import Card from '../../components/card/card.component';
 
 const DashBoard = () => {
-  const quizAPI = process.env.REACT_APP_API_QUIZ
   const [titles, setTitles] = useState([]);
   const [id, setId] = useState([]);
   const globalState = useContext(store);
   const { state } = globalState;
   useEffect(() => {
     async function getQuizzes() {
-      const userQuiz = await axios.get(`${quizAPI}?user=${state._id}`)
+      const userQuiz = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz?user=${state._id}`)
       if (userQuiz.data) {
         const { doc } = userQuiz.data.data;
         for (let i = 0; i < doc.length; i++) {

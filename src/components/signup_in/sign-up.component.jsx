@@ -19,7 +19,7 @@ const SignUp = () => {
       alert("passwords don't match"); // adjust the alert button
       return;
     }
-    await axios.post(api, post)
+    await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/users/login', post)
       .then((res) => { console.log(res); }).catch((err) => { console.log(err); });
   };
 
@@ -30,8 +30,6 @@ const SignUp = () => {
   return (
     <form className="sign-up-form" onSubmit={handleSubmit}>
       <h2 className="title"> Don't Have an Account? </h2>
-          <h2> {api}</h2>
-
       <span> Sign up with email and password </span>
       <label> name </label>
       <input
