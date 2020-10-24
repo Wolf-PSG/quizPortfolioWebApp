@@ -64,6 +64,7 @@ const PlayQuiz = () => {
           />
           <button type="submit" className="btn"> Submit Your name </button>
         </div>
+        </form>
 
       { questions.map((element, i) => (
         <Play className="hidden" key={i} {...element} />
