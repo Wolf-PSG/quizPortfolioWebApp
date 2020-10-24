@@ -45,7 +45,7 @@ const PlayQuiz = () => {
 
   const handlePost = (e) => {
     e.preventDefault();
-    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/score', post);
+    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/score', post).catch((err) => {console.log(`${err} \n ${post}`)});
     history.push({
       pathname: '/finishQuiz',
       state: { score },
