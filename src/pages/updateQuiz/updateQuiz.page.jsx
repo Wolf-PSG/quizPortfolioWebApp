@@ -136,8 +136,8 @@ const UpdateQuiz = () => {
     <h2> {quiz.title} </h2>
     <div className="questionOptions">
     <button onClick={handleURLCreate}> Create URL to send to friends </button>
-    <h2> {url} </h2> 
     <button onClick={playQuiz}> Play this Quiz </button>
+    <h2> {url} </h2> 
 
       { questions.map((element , i) => {
         const {question} = element;
