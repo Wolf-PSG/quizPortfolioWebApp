@@ -1,17 +1,27 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Play from './play.component';
 // import './playQuiz.style.scss';
 import { scoreStore } from '../../store/scoreStore';
 
 const PlayQuiz = () => {
-  const score = useContext(scoreStore);
-  const { state } = score;
+  const history = useHistory();
+  const store = useContext(scoreStore);
+  const { state } = store;
+  const { score } = state;
   const [questions, setQuestions] = useState([]);
+  const [post, setPost] = useState({
+    quizID: '',
+    name: '',
+    score,
+  });
+
+  const { pathname } = window.location;
+  const searchID = pathname.split('/playQuiz/');
   useEffect(() => {
     async function getQuestions() {
-      const { pathname } = window.location;
-      const searchID = pathname.split('/playQuiz/');
       const questionsArray = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question/?quizID=${searchID[1]}`);
       questionsArray.data.data.doc.forEach((element, i) => {
         const {
@@ -20,6 +30,7 @@ const PlayQuiz = () => {
         setQuestions((values) => [...values, {
           quizID: quizID[0].id, id: _id, image, question, answerSelectionOne, answerSelectionTwo, answerSelectionThree, answerSelectionFour, correctAnswer,
         }]);
+        setPost({ ...post, quizID: quizID[0].id });
       });
       // setQuiz({ ...quiz, title: quizDoc.title, questions: quizDoc.questions});
     }
@@ -27,13 +38,33 @@ const PlayQuiz = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setPost({ post, [id]: value });
+  };
+
+  const handlePost = (e) => {
+    e.preventDefault();
+    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/score/', post);
+    history.push({
+      pathname: '/finishQuiz',
+      state: {score},
+    });
+  };
+
   return (
     <div>
-      <h2>
-        {' '}
-        Your Score
-        {state.score}
-      </h2>
+      <form className="quizTitle-form" onSubmit={handlePost}>
+        <div>
+          <label> Add your name to once your're done and hit the submit button to submit </label>
+          <input
+            type="text"
+            id="name"
+            onChange={handleChange}
+          />
+          <button type="submit" className="btn"> Submit Your name </button>
+        </div>
+
       { questions.map((element, i) => (
         <Play className="hidden" key={i} {...element} />
       ))}

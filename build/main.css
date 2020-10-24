@@ -22,3 +22,5 @@ h1{font-weight:bold}
 
 .question-container{justify-content:center;min-height:100vh;width:50%;display:inline-block;position:absolute;left:23%;flex-direction:column;text-align:center;align-items:center;padding:50px 40px;color:white;background:linear-gradient(to right, #bdc3c7, #2c3e50);border-radius:10px;box-shadow:0 0.4px 0.4px rgba(128,128,128,0.109),0 1px 1px rgba(128,128,128,0.155),0 2.1px 2.1px rgba(128,128,128,0.195),0 4.4px 4.4px rgba(128,128,128,0.241),0 12px 12px rgba(128,128,128,0.35)}.question-container h1{margin:0 0 24px 0}.question-container .form-input-material{margin:12px 0}img{display:block;width:50%;height:200px;margin-left:auto;margin-right:auto;padding:100px}.hidden{visibility:hidden;opacity:0;transition:visibility 0s 0.5s, opacity 0.5s ease-in-out}.active{visibility:visible;transition:visibility 1s 0s, opacity 1s ease-in-out}.image-container{display:flex;justify-content:center}.image-container .question-image{max-width:100%;height:auto;width:auto\9}
 
+.finish-container{margin:auto;width:60%;border:5px solid black;padding:10px}
+

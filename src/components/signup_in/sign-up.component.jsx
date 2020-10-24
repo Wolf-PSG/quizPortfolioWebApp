@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './sign-up.styles.scss';
 
-
 const SignUp = () => {
   const [post, setPost] = useState({
     name: '',
@@ -18,8 +17,7 @@ const SignUp = () => {
       alert("passwords don't match"); // adjust the alert button
       return;
     }
-    await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/users/login', post)
-      .then((res) => { console.log(res); }).catch((err) => { console.log(err); });
+    await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/users/login', post);
   };
 
   const handleChange = (e) => {

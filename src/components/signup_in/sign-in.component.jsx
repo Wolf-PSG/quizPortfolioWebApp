@@ -33,8 +33,6 @@ const SignIn = (props) => {
 
   const handleSuccess = async (userData) => {
     userData.data.user.loggedIn = true;
-    console.log(userData.data);
-    // console.log(userData.data);
     dispatch({ ...userData.data, type: 'SET_CURRENT_USER' });
     history.push('/quiz');
   };

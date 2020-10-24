@@ -26,11 +26,8 @@ const Play = (props) => {
         <h1 id="questionTitle">
           {question}
         </h1>
-
-        <h1> {state.score} </h1>
-
         <div className="image-container">
-        <img className="question-image" alt="questionImage" src={(`/${image}`)} onClick={(e) => (console.log(e.target))}/>
+        <img className="question-image" alt="questionImage" src={(`/${image}`)}/>
         </div>
         <div id="results" />
         <button onClick={handleClick} id="1">
