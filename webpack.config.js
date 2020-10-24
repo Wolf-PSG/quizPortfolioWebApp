@@ -54,6 +54,7 @@ module.exports = {
   },
   output: {
     path: outputPath,
+    publicPath: '/',
     filename: 'bundle.js',
 
   },
