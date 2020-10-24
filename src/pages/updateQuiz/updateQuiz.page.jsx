@@ -21,12 +21,13 @@ const UpdateQuiz = () => {
   const [imageState, setImageState] = useState({
     file: null,
   });
+  const [url, setUrl] = useState('Your custom URL you can share for others to play');
   useEffect(() => {
     async function getQuiz() {
       const {pathname} = window.location;
       const searchID = pathname.split('/updateQuiz/');
       const Quiz = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz/${searchID[1]}`);
-      const {title, id} = Quiz.data.data.doc
+      const {title, id} = Quiz.data.data.doc;
       setQuiz({title: title, id: id});
     }
     getQuiz();
@@ -113,6 +114,19 @@ const UpdateQuiz = () => {
     })
   };
 
+  const handleURLCreate = () => {
+    const {id} = quiz;
+    setUrl(`https://quiz-maker-psg.netlify.app/playQuiz/${id}`);
+  };
+
+  const playQuiz = () => {
+    const {id} = quiz;
+    history.push({
+      pathname:`/playQuiz/${id}`,
+    });
+  };
+
+
   const fixBrokenImages = (e) => {
       e.target.src = 'https://image.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600w-1037719192.jpg'
 
@@ -121,6 +135,10 @@ const UpdateQuiz = () => {
     <div>
     <h2> {quiz.title} </h2>
     <div className="questionOptions">
+    <button onClick={handleURLCreate}> Create URL to send to friends </button>
+    <h2> {url} </h2> 
+    <button onClick={playQuiz}> Play this Quiz </button>
+
       { questions.map((element , i) => {
         const {question} = element;
         return (

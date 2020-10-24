@@ -4,7 +4,6 @@ import { store } from '../../store/store';
 
 const About = (props) => {
   const globalState = useContext(store);
-  console.log(globalState);
   return (
     <div className="dashboard">
     <h1> About Quiz Maker </h1>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { store } from '../../store/store';
 // import Logout from '../logout/logout.component';
 // import {connect} from 'react-redux'
-// import { createStructuredSelector} from 'reselect';
+// import { createStrsucturedSelector} from 'reselect';
 // import {selectCurrentUser} from '../../redux/user/user.selector'
 import './header.style.scss';
 

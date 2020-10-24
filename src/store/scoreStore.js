@@ -1,23 +1,23 @@
 // store.js
 import React, { createContext, useReducer } from 'react';
 
-let initialState = 0;
-const scoreStore = createContext(initialState);
+const scoreStore = createContext();
 const { Provider } = scoreStore;
 
-const ScoreStateProvider = ({ children }) => {
-  const [state, dispatch] = useReducer((state = initialState, action) => {
-    switch (action.type) {
-      case 'CORRECT':
-        // const {_id} = action.Question;
-        initialState++;
-        return initialState;
-      default:
-        throw new Error();
+function scoreReducer(state, action) {
+  switch (action.type) {
+    case 'CORRECT': {
+      return { score: state.score + 1 };
     }
-  }, initialState);
-
-  return <Provider value={{ state, dispatch }}>{children}</Provider>;
+    default: {
+      throw new Error(`Unhandled action type: ${action.type}`);
+    }
+  }
+}
+const ScoreStateProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(scoreReducer, { score: 0 });
+  return (<Provider value={{ state, dispatch }}>{children}</Provider>
+  );
 };
 
 export { scoreStore, ScoreStateProvider };

@@ -13,6 +13,7 @@ import Landing from './pages/landing/landing_page';
 import About from './pages/about/about.page';
 import UpdateQuiz from './pages/updateQuiz/updateQuiz.page';
 import { store } from './store/store';
+import PlayQuiz from './components/playQuiz/playQuiz.component';
 const App = () => {
   const globalState = useContext(store);
   return (
@@ -47,6 +48,8 @@ const App = () => {
         <Route path="/createQuizzes" component={CreateQuestion} />
 
         <Route path="/updateQuiz/:id" component={UpdateQuiz} />
+
+        <Route path="/playQuiz/:id" component={PlayQuiz} />
 
       </Switch>
     </BrowserRouter>
