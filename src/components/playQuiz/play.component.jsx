@@ -19,9 +19,6 @@ const Play = (props) => {
 
   return (
     <div>
-      {/* <h1 className={`score ${active}`}>
-        {`You Scored ${questionState.currentScore}`}
-      </h1> */}
       <div className={hidden}>
         <h1 id="questionTitle">
           {question}

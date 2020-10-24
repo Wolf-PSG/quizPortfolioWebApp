@@ -46,7 +46,7 @@ const PlayQuiz = () => {
     const scoredPost = post;
     scoredPost.score = score;
     e.preventDefault();
-    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/score', scoredPost).catch((err) => {console.log(`${err} \n ${post}`)});
+    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/score', scoredPost).catch((err) => { console.log(`${err} \n ${post}`); });
     history.push({
       pathname: '/finishQuiz',
       state: { score },
@@ -66,10 +66,12 @@ const PlayQuiz = () => {
           <button type="submit" className="btn"> Submit Your name </button>
         </div>
       </form>
+      <div>
+        { questions.map((element, i) => (
+          <Play className="hidden" key={i} {...element} />
+        ))}
+      </div>
 
-      { questions.map((element, i) => (
-        <Play className="hidden" key={i} {...element} />
-      ))}
     </div>
   );
 };
