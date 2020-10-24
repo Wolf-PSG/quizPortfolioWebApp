@@ -3,7 +3,6 @@ import './App.css';
 import {
   Route, Switch, Redirect, BrowserRouter,
 } from 'react-router-dom';
-import ReactDOM from "react-dom";
 import SignInAndUp from './pages/sign/sign.component';
 import Header from './components/header/header.component';
 import QuizPage from './pages/createQuiz/createQuiz.page';

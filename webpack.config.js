@@ -1,8 +1,9 @@
 const webpack = require('webpack');
-const {join} = require('path')
+const { join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { WebpackPluginServe: Serve } = require('webpack-plugin-serve');
+
 const outputPath = join(process.cwd(), './build');
 
 // const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
@@ -20,38 +21,40 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: {
+          loader: 'babel-loader',
+        },
         // options: {
         //   presets: ["react", "es2015", "stage-1"]
         // },
       },
       //  {
       //   test: /\.html$/i,
-      //   use: [{        
+      //   use: [{
       //     loader: 'html-loader',
       //   }]
       // },
-     {
+      {
         test: /.(css|scss)$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
-       {
-      test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
-      use: [
-        {        
-          loader: 'file-loader',
-        }
-      ]
-    
+      {
+        test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+
       },
-      ],
+    ],
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
-    output: {
+  output: {
     path: outputPath,
-    filename: "bundle.js"
+    filename: 'bundle.js',
 
   },
   // output: {
@@ -61,17 +64,17 @@ module.exports = {
   // },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: join(__dirname, "src", "index.html")
+      filename: 'index.html',
+      template: join(__dirname, 'src', 'index.html'),
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
     new Serve({ static: outputPath }),
     // new FaviconsWebpackPlugin()
 
     // new MiniCssExtractPlugin({ filename: isDevelopment ? '[name].css' : '[name].[hash].css', chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css' }),
   ],
-  // watch: true,
+  watch: true,
 };
