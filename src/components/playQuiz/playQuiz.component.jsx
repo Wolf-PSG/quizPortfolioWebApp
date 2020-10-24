@@ -15,7 +15,7 @@ const PlayQuiz = () => {
   const [post, setPost] = useState({
     quizID: '',
     name: '',
-    score: parseInt(score, 10),
+    score: '',
   });
 
   const { pathname } = window.location;
@@ -44,8 +44,10 @@ const PlayQuiz = () => {
   };
 
   const handlePost = (e) => {
+    const scoredPost = post;
+    scoredPost.score = score;
     e.preventDefault();
-    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/score', post).catch((err) => {console.log(`${err} \n ${post}`)});
+    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/score', scoredPost).catch((err) => {console.log(`${err} \n ${post}`)});
     history.push({
       pathname: '/finishQuiz',
       state: { score },
