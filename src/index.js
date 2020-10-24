@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 import { StateProvider } from './store/store';
 import { QuestionStateProvider } from './store/questionStore';
 import { ScoreStateProvider } from './store/scoreStore';
@@ -33,4 +32,3 @@ ReactDOM.render(
 
     </div> 
 */
-serviceWorker.unregister();
