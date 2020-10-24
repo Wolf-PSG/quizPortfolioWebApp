@@ -55,10 +55,10 @@ const PlayQuiz = () => {
 
   return (
     <div>
+       <h2>Add your name and hit the submit button to get your results</h2>
       <form className="quizTitle-form" onSubmit={handlePost}>
         <div>
-          <label> Add your name to once your're done and hit the submit button to submit </label>
-          <input
+        <input
             type="text"
             id="name"
             onChange={handleChange}
