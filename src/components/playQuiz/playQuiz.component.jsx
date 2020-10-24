@@ -15,7 +15,7 @@ const PlayQuiz = () => {
   const [post, setPost] = useState({
     quizID: '',
     name: '',
-    score,
+    score: parseInt(score, 10),
   });
 
   const { pathname } = window.location;
@@ -48,7 +48,7 @@ const PlayQuiz = () => {
     axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/score', post);
     history.push({
       pathname: '/finishQuiz',
-      state: {score},
+      state: { score },
     });
   };
 
@@ -64,7 +64,7 @@ const PlayQuiz = () => {
           />
           <button type="submit" className="btn"> Submit Your name </button>
         </div>
-        </form>
+      </form>
 
       { questions.map((element, i) => (
         <Play className="hidden" key={i} {...element} />
