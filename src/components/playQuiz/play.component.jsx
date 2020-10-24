@@ -2,11 +2,10 @@ import React, {useEffect, useState, useContext } from 'react';
 import './play.style.scss';
 import { scoreStore } from '../../store/scoreStore';
 
-const Play = (props) => {
+const Play = () => {
   const state = useContext(scoreStore);
   const [hidden, setHidden] = useState('question-container');
   const { dispatch } = state;
-  console.log(props);
   const {image, question, answerSelectionFour,answerSelectionThree,answerSelectionTwo,answerSelectionOne, correctAnswer} = props;
 
   const handleClick = (e) => {

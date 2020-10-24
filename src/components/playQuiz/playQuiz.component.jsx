@@ -24,7 +24,6 @@ const PlayQuiz = () => {
       // setQuiz({ ...quiz, title: quizDoc.title, questions: quizDoc.questions});
     }
     getQuestions();
-    questions.map((element, i) => { console.log(element); });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
