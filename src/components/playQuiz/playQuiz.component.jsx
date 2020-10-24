@@ -3,7 +3,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Play from './play.component';
-// import './playQuiz.style.scss';
 import { scoreStore } from '../../store/scoreStore';
 
 const PlayQuiz = () => {
@@ -40,7 +39,7 @@ const PlayQuiz = () => {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setPost({ post, [id]: value });
+    setPost({ ...post, [id]: value });
   };
 
   const handlePost = (e) => {
