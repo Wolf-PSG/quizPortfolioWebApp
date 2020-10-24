@@ -1,8 +1,8 @@
-import React, {useEffect, useState, useContext } from 'react';
+import React, {useState, useContext } from 'react';
 import './play.style.scss';
 import { scoreStore } from '../../store/scoreStore';
 
-const Play = () => {
+const Play = (props) => {
   const state = useContext(scoreStore);
   const [hidden, setHidden] = useState('question-container');
   const { dispatch } = state;

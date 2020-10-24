@@ -29,10 +29,6 @@ const PlayQuiz = () => {
 
   return (
     <div>
-      {/* <h1>
-        {' '}
-        {`${quiz.title} Quiz`}
-      </h1> */}
       <h2>
         {' '}
         Your Score
