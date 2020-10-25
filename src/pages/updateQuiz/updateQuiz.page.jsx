@@ -169,12 +169,7 @@ const UpdateQuiz = () => {
             name="photo"
             onChange={handleFileChange}
           />
-          { imageState.file ? (<img onError={fixBrokenImages} src={imageState} alt=" Placeholder " />) : <div />}
-
-          {/* <button type="submit" className="btn" onClick={handleImageUpload}> submit </button> */}
-          {/* { imageState ? (
-        <img src={imageState} alt=' Placeholder '/>) : <div/>} */}
-
+          { imageState.file ? (<img onError={fixBrokenImages} src={imageState.file} alt=" Placeholder " />) : ( <img onError={fixBrokenImages} src={imageState} alt=" Placeholder " /> )}
           <h2> Question Title </h2>
 
           <input
