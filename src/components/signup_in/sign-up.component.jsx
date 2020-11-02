@@ -17,7 +17,7 @@ const SignUp = () => {
       alert("passwords don't match"); // adjust the alert button
       return;
     }
-    await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/users/login', post);
+    await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/users/signup', post);
   };
 
   const handleChange = (e) => {
