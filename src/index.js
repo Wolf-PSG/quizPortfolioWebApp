@@ -5,6 +5,7 @@ import App from './App';
 import { StateProvider } from './store/store';
 import { QuestionStateProvider } from './store/questionStore';
 import { ScoreStateProvider } from './store/scoreStore';
+
 ReactDOM.render(
   <React.StrictMode>
     <StateProvider>
@@ -25,10 +26,10 @@ ReactDOM.render(
 /*
     {/* <div>
           <p>{process.env.REACT_APP_API_QUESTION}</p>
-<p> {process.env.REACT_APP_API_SIGN_UP}</p> 
-<p> {process.env.REACT_APP_API_SIGN_IN}</p> 
-<p> {process.env.REACT_APP_API_QUIZ}</p> 
-<p> {process.env.REACT_APP_API_UPLOADS}</p> 
+<p> {process.env.REACT_APP_API_SIGN_UP}</p>
+<p> {process.env.REACT_APP_API_SIGN_IN}</p>
+<p> {process.env.REACT_APP_API_QUIZ}</p>
+<p> {process.env.REACT_APP_API_UPLOADS}</p>
 
-    </div> 
+    </div>
 */

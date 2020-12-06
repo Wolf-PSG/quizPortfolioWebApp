@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-// import UpdateQuestions from '../../components/updateQuestions/updateQuestions.component';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import './updateQuiz.style.scss';
@@ -30,6 +31,7 @@ const UpdateQuiz = () => {
       setQuiz({ title, id });
     }
     getQuiz();
+    return () => toast.dark('Update your quiz');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -72,7 +74,7 @@ const UpdateQuiz = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('photo', file);
-    const res = await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/uploads', formData);
+    const res = await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/uploads', formData).then(() => toast.dark('Image Changed'));
     setQuestion({ ...question, image: res.data.file });
     isFileChanged.current = false;
   };
@@ -81,14 +83,14 @@ const UpdateQuiz = () => {
     if (!imageState.file) {
       handleFileUpload(e);
     } else {
-      await axios.patch(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question/${question.id}`, question);
+      await axios.patch(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question/${question.id}`, question).then(() => toast.dark('Question Updated'));
     }
     // window.location.reload();
   };
 
   const handleDelete = (e) => {
     const { id } = e.currentTarget;
-    axios.delete(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question/${id}`);
+    axios.delete(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question/${id}`).then(() => toast.dark('Question Deleted'))
     window.location.reload();
   };
 
@@ -136,7 +138,6 @@ const UpdateQuiz = () => {
       </h2>
       <div className="questionOptions">
         <button onClick={handleURLCreate}> Create URL to send to friends </button>
-        <button onClick={playQuiz}> Play this Quiz </button>
         <h2>
           {' '}
           {url}
@@ -212,6 +213,7 @@ const UpdateQuiz = () => {
           />
           <button type="submit" className="btn" onClick={handleSubmit}> Change Question </button>
         </form>
+        <ToastContainer />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './updateQuestions.style.scss';
 // import { scoreStore } from '../../store/scoreStore';
 
@@ -6,7 +6,7 @@ const UpdateQuestions = () => {
   // const score = useContext(scoreStore);
   // const { dispatch } = score;
 
-//   const { questions } = props.props;
+  //   const { questions } = props.props;
   const [questionState, setQuestionState] = useState({
     currentScore: 0,
     currentQuestion: 0,
@@ -24,7 +24,50 @@ const UpdateQuestions = () => {
 
   // const [imageState, setImageState] = useState('<img className="question-image"/>')
 
-  const { correctAnswer} = questionState;
+  const { correctAnswer } = questionState;
+  const handleClick = (e) => {
+    console.log(e);
+  };
+
+  return (
+    <div>
+      <h1 className={`score ${active}`}>
+        {`You Scored ${questionState.currentScore}`}
+      </h1>
+      <div className={`question-container ${hidden}`}>
+        <h1 id="questionTitle">
+          {questionState.title}
+          ;
+        </h1>
+        <div className="image-container">
+          <img className="question-image" alt="questionImage" src={(`/${questionState.image}`)} />
+        </div>
+        <div id="results" />
+        <button onClick={handleClick} id="1">
+          {questionState.optionOne}
+        </button>
+        <button onClick={handleClick} id="2">
+          {questionState.optionTwo}
+        </button>
+
+        { questionState.optionThree ? (
+          <button onClick={handleClick} id="3">
+            {questionState.optionThree}
+          </button>
+        ) : <div />}
+
+        { questionState.optionFour ? (
+          <button onClick={handleClick} id="4">
+            {questionState.optionFour}
+          </button>
+        ) : <div />}
+      </div>
+    </div>
+
+  );
+};
+
+export default UpdateQuestions;
 
 //   useEffect(() => {
 //     function setElements() {
@@ -73,46 +116,3 @@ const UpdateQuestions = () => {
 //     }
 //   };
 //   console.log(`Image state: ${questionState.image}`)
-  const handleClick = (e) => {
-      console.log(e)
-  }
-
-  return (
-    <div onClick={(e) => (console.log(e.target.className))}>
-      <h1 className={`score ${active}`}>
-        {`You Scored ${questionState.currentScore}`}
-      </h1>
-      <div className={`question-container ${hidden}`}>
-        <h1 id="questionTitle">
-          {questionState.title}
-          ;
-        </h1>
-        <div className="image-container">
-        <img className="question-image" alt="questionImage" src={(`/${questionState.image}`)} onClick={(e) => (console.log(e.target))}/>
-        </div>
-        <div id="results" />
-        <button onClick={handleClick} id="1">
-          {questionState.optionOne}
-        </button>
-        <button onClick={handleClick} id="2">
-          {questionState.optionTwo}
-        </button>
-
-        { questionState.optionThree ? (
-        <button onClick={handleClick} id="3">
-          {questionState.optionThree}
-        </button> ) : <div/>
-        }
-
-        { questionState.optionFour ? (
-        <button onClick={handleClick} id="4">
-          {questionState.optionFour}
-        </button> ):  <div/>
-        }
-      </div>
-    </div>
-
-  );
-};
-
-export default UpdateQuestions;

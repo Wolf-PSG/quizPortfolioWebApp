@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-
 import { store } from '../../store/store';
 
 // import CustomButton from '../../components/custom-button/custom-button.component';
@@ -32,7 +31,7 @@ const SignIn = (props) => {
   const handleSuccess = async (userData) => {
     userData.data.user.loggedIn = true;
     dispatch({ ...userData.data, type: 'SET_CURRENT_USER' });
-    history.push('/quiz');
+    history.push('/dashboard');
   };
 
   const handleSubmit = async (e) => {

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './create-form.style.scss';
-// first monitor comment -- wow 
-//she told me put my heart in the bag and nobdy gets hurt
+// first monitor comment -- wow
 
 axios.interceptors.request.use(
   async (config) => {
@@ -14,7 +15,7 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 const CreateQuestion = (state) => {
-  const {id} = state.location.state;
+  const { id } = state.location.state;
   const history = useHistory();
   const [post, setPost] = useState({
     quizID: id,
@@ -26,15 +27,25 @@ const CreateQuestion = (state) => {
     answerSelectionFour: '',
     correctAnswer: '',
   });
+  const [quizPost, setQuizPost] = useState([]);
+  const [file, setFile] = useState('');
+  const [imageState, setImageState] = useState({
+    file: null,
+  });
 
-  const {image, question, answerSelectionOne, answerSelectionTwo} = post
+  const {
+    image, question, answerSelectionOne, answerSelectionTwo,
+  } = post;
 
   useEffect(() => {
-    if (image !== '' && question !== '' && answerSelectionOne !== '' && answerSelectionTwo !== '' ) {
+    if (image !== '' && question !== '' && answerSelectionOne !== '' && answerSelectionTwo !== '') {
       axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/question', post)
-      .then(res => setQuizPost([...quizPost, res.data.id]))
-      .catch(err => {console.log(err)});
-      setPost({    
+        .then((res) => {
+          setQuizPost([...quizPost, res.data.id]);
+          toast.dark('Question Created');
+        })
+        .catch(() => { toast.dark('Error in submitting question, try again')});
+      setPost({
         quizID: id,
         question: '',
         answerSelectionOne: '',
@@ -42,28 +53,22 @@ const CreateQuestion = (state) => {
         answerSelectionThree: '',
         answerSelectionFour: '',
         correctAnswer: parseInt('', 10),
-        image: '',})
-    setImageState({file:null})
+        image: '',
+      });
+      setImageState({ file: null });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [image])
+  }, [image]);
 
-  const [quizPost, setQuizPost] = useState([]);
-
-  const [file, setFile] = useState('');
-  const [imageState, setImageState] = useState({
-    file: null,
-  });
-
-  const handleSubmit = async (e) => { //submitting image first then posting the data
+  const handleSubmit = async (e) => { // submitting image first then posting the data
     e.preventDefault();
     const formData = new FormData();
     formData.append('photo', file);
-    let res = await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/uploads', formData);
-    setPost({...post, image:res.data.file});
+    const res = await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/uploads', formData);
+    setPost({ ...post, image: res.data.file });
   };
 
-  const handleChange = (e) => { //Handling text input changes
+  const handleChange = (e) => { // Handling text input changes
     const { id, value } = e.target;
     if (id === 'correctAnswer') return setPost({ ...post, [id]: parseInt(value, 10) });
     setPost({ ...post, [id]: value });
@@ -73,33 +78,33 @@ const CreateQuestion = (state) => {
     const image = e.target.files[0];
     setFile(image);
     setImageState(URL.createObjectURL(image));
-  }
+  };
 
   const handleSuccess = () => {
     history.push({
-          pathname:"/dashboard",
-    })
+      pathname: '/dashboard',
+    });
   };
 
   return (
     <div className="question-form">
-      <form className="questions-form" onSubmit={(e) => e.preventDefault()} encType="multipart/form-data" >
+      <form className="questions-form" onSubmit={(e) => e.preventDefault()} encType="multipart/form-data">
         <div className="form-input">
           {/*  htmlFor is to tell react what thehtml entered is going to be for */}
         </div>
-              <input
-                type="file"
-                name="photo"
-                onChange={handleFileChange}
-              />
+        <input
+          type="file"
+          name="photo"
+          onChange={handleFileChange}
+        />
         { imageState ? (
-        <img src={imageState} alt=' Your image here '/>) : <div/>}
-          <h2> Question Title </h2>
-          <input
-              type="text"
-              id="question"
-              onChange={handleChange}
-            />
+          <img src={imageState} alt=" Your image here " />) : <div />}
+        <h2> Question Title </h2>
+        <input
+          type="text"
+          id="question"
+          onChange={handleChange}
+        />
         <div className="form-input">
           <h1 htmlFor="answers"> Answers </h1>
           <div className="form-input">
@@ -138,9 +143,10 @@ const CreateQuestion = (state) => {
         </div>
         <button className="btn" onClick={handleSubmit}> Submit Question </button>
         <button className="btn" onClick={handleSuccess}>
-        Finish Quiz 
+          Finish Quiz
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };

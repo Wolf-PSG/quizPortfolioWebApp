@@ -7,11 +7,13 @@ import Card from '../../components/card/card.component';
 const DashBoard = () => {
   const [titles, setTitles] = useState([]);
   const [id, setId] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [messsage, setMessage] = useState('Loading ...');
   const globalState = useContext(store);
   const { state } = globalState;
   useEffect(() => {
     async function getQuizzes() {
-      const userQuiz = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz?user=${state._id}`)
+      const userQuiz = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz?user=${state._id}`);
       if (userQuiz.data) {
         const { doc } = userQuiz.data.data;
         for (let i = 0; i < doc.length; i++) {
@@ -19,7 +21,9 @@ const DashBoard = () => {
           setTitles((prevState) => [...prevState, title]);
           setId((prevState) => [...prevState, _id]);
         }
+        setLoading(false);
       }
+      setMessage("You haven't made any quizzes yet");
     }
     getQuizzes();
   }, [state._id]);
@@ -31,7 +35,14 @@ const DashBoard = () => {
       {/* <h1>{quiz.titleArray}</h1> */}
       {/* <CollectionsOverview /> */}
       <div>
-        {array.map((value, index) => <Card key ={index} id={id[index]} titles={value}/>)}
+        {loading ? (
+          <h2>
+            {' '}
+            {messsage}
+            {' '}
+          </h2>
+        ) : (
+          array.map((value, index) => <Card key={value} id={id[index]} titles={value} />))}
       </div>
       {/* <Card titles={title} ID={id} /> */}
     </div>
