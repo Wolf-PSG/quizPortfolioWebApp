@@ -3,6 +3,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Play from './play.component';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { scoreStore } from '../../store/scoreStore';
 
 const PlayQuiz = () => {
@@ -54,7 +56,7 @@ const PlayQuiz = () => {
     const scoredPost = post;
     scoredPost.score = score;
     e.preventDefault();
-    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/score', scoredPost).catch((err) => { console.log(`${err} \n ${post}`); });
+    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/score', scoredPost).catch(() => {toast.dark('Score was unable to be sent')});
     history.push({
       pathname: '/finishQuiz',
       state: { score },
@@ -87,6 +89,7 @@ const PlayQuiz = () => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

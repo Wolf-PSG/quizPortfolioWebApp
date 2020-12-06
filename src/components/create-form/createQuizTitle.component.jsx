@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './create-form.style.scss';
 import { store } from '../../store/store';
 
@@ -51,30 +53,20 @@ const CreateQuizTitle = () => {
           },
         });
       },
-      (error) => {
-        console.log(error);
-      },
-    );
+    ).catch(() => toast.dark('Quiz was not able to created'));
   };
   return (
     <div className="question-form">
       <form className="quizTitle-form" onSubmit={handleSuccessQuiz}>
         <div>
           <label> Quiz Title </label>
-          {' '}
           <input type="text" id="title" className="form-control-material" onChange={handleChange} />
-          {' '}
           <button type="submit" className="btn">
-            {' '}
             Submit Quiz Title
-            {' '}
-            {' '}
           </button>
-          {' '}
         </div>
-        {' '}
       </form>
-      {' '}
+      <ToastContainer />
     </div>
   );
 };

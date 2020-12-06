@@ -15,7 +15,7 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-const SignIn = (props) => {
+const SignIn = () => {
   const globalState = useContext(store);
   const { dispatch } = globalState;
   const history = useHistory();
@@ -64,10 +64,6 @@ const SignIn = (props) => {
           onChange={handleChange}
         />
         <button type="submit"> Sign in </button>
-        {/* <button type="button" onClick={signInWithGoogle} isGoogle>
-							{' '}
-							Sign in with Google{' '}
-						</button> */}
       </form>
       <ToastContainer />
     </div>
