@@ -46,9 +46,9 @@ const SignIn = () => {
   const handleChange = (e) => {
     const { id, value } = e.target; // deconstructor the value and name
     if (id === 'email signin') {
-      setPost({ ...post, email: value });
+      setPost({ ...post, 'email': value });
     }
-    setPost({ ...post, password: value });
+    setPost({ ...post, 'password': value });
   };
   return (
     <div>
