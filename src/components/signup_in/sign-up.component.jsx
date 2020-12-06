@@ -14,9 +14,11 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { password, confirmedPassword } = post;
+    if (password.length < 8) {
+      return toast.dark('Passwords must have 8 characters');
+    }
     if (password !== confirmedPassword) {
-      toast.dark("Passwords don't match"); // adjust the alert button
-      return;
+      return toast.dark("Passwords don't match"); // adjust the alert button
     }
     const newUser = await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/users/signup', post);
     if (newUser) {
