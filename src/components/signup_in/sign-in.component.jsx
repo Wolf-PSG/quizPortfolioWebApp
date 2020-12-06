@@ -45,10 +45,12 @@ const SignIn = () => {
 
   const handleChange = (e) => {
     const { id, value } = e.target; // deconstructor the value and name
-    if (id.includes('email')) {
+    const isEmail = id.includes('email');
+    if (isEmail) {
       setPost({ ...post, email: value });
+    } else {
+      setPost({ ...post, password: value });
     }
-    setPost({ ...post, password: value });
   };
   return (
     <div>
@@ -56,13 +58,13 @@ const SignIn = () => {
         <h2> Already have an account </h2>
         <label> Email </label>
         <input
-          id="email signin"
+          id="email Signin"
           type="email"
           onChange={handleChange}
         />
         <label> Password </label>
         <input
-          id="password signin"
+          id="password Signin"
           type="password"
           onChange={handleChange}
         />
