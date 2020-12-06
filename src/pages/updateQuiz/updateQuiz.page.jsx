@@ -27,11 +27,13 @@ const UpdateQuiz = () => {
       const { pathname } = window.location;
       const searchID = pathname.split('/updateQuiz/');
       const Quiz = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz/${searchID[1]}`);
+      if (!Quiz) {
+        return () => toast.dark('finding your quiz');
+      }
       const { title, id } = Quiz.data.data.doc;
       setQuiz({ title, id });
     }
     getQuiz();
-    return () => toast.dark('Update your quiz');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -90,7 +92,7 @@ const UpdateQuiz = () => {
 
   const handleDelete = (e) => {
     const { id } = e.currentTarget;
-    axios.delete(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question/${id}`).then(() => toast.dark('Question Deleted'))
+    axios.delete(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question/${id}`).then(() => toast.dark('Question Deleted'));
     window.location.reload();
   };
 
@@ -170,7 +172,7 @@ const UpdateQuiz = () => {
             name="photo"
             onChange={handleFileChange}
           />
-          { imageState.file ? (<img onError={fixBrokenImages} src={imageState.file} alt=" Placeholder " />) : ( <img onError={fixBrokenImages} src={imageState} alt=" Placeholder " /> )}
+          { imageState.file ? (<img onError={fixBrokenImages} src={imageState.file} alt=" Placeholder " />) : (<img onError={fixBrokenImages} src={imageState} alt=" Placeholder " />)}
           <h2> Question Title </h2>
 
           <input

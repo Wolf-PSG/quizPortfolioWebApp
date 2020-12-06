@@ -3,6 +3,8 @@ import axios from 'axios';
 import { store } from '../../store/store';
 import './dashboard.style.scss';
 import Card from '../../components/card/card.component';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DashBoard = () => {
   const [titles, setTitles] = useState([]);
@@ -23,7 +25,10 @@ const DashBoard = () => {
         }
         setLoading(false);
       }
-      setMessage("You haven't made any quizzes yet");
+      if (userQuiz.data.results === 0) {
+        setMessage('');
+        return toast.dark('No quizzes found');
+      }
     }
     getQuizzes();
   }, [state._id]);
@@ -37,14 +42,12 @@ const DashBoard = () => {
       <div>
         {loading ? (
           <h2>
-            {' '}
             {messsage}
-            {' '}
           </h2>
         ) : (
-          array.map((value, index) => <Card key={value} id={id[index]} titles={value} />))}
+          array.map((value, index) => <Card key={`${value}${index}`} id={id[index]} titles={value} />))}
       </div>
-      {/* <Card titles={title} ID={id} /> */}
+      <ToastContainer />
     </div>
   );
 };

@@ -51,19 +51,6 @@ button {
 * {
   line-height: 2; }
 
-.sign-in-form {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-  width: 500px; }
-  .sign-in-form .title {
-    margin: 10px 0; }
-
-label {
-  font-weight: bold;
-  padding: 10px; }
-
 .Toastify__toast-container {
   z-index: 9999;
   -webkit-transform: translate3d(0, 0, 9999px);
@@ -480,6 +467,19 @@ label {
 
 .Toastify__slide-exit--bottom-center {
   animation-name: Toastify__slideOutDown; }
+
+.sign-in-form {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  width: 500px; }
+  .sign-in-form .title {
+    margin: 10px 0; }
+
+label {
+  font-weight: bold;
+  padding: 10px; }
 
 .sign-up-form {
   display: flex;
