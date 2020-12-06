@@ -53,13 +53,13 @@ const SignIn = () => {
         <h2> Already have an account </h2>
         <label> Email </label>
         <input
-          id="email"
+          id="email signin"
           type="email"
           onChange={handleChange}
         />
         <label> Password </label>
         <input
-          id="password"
+          id="password signin"
           type="password"
           onChange={handleChange}
         />
