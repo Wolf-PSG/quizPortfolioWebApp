@@ -13,8 +13,8 @@ const Header = () => {
   return (
     <div className="header">
       <div className="options">
-        <Link className="option" to="/quiz"> quiz </Link>
-        <Link className="option" to="/dashboard"> dashboard </Link>
+        <Link className="option" to="/quiz"> Create Quiz </Link>
+        <Link className="option" to="/dashboard"> Dashboard </Link>
         <Link className="option" to="/about"> About </Link>
         {state.loggedIn
           ? (<div className="option" onClick={async () => { await dispatch({ state: { loggedIn: false }, type: 'LOGOUT' }); }}>Sign Out</div>)

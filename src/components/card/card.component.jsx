@@ -10,15 +10,12 @@ const Card = (props) => {
       <Link
         key={id}
         className="image"
-        style={{ backgroundImage: 'url(https://www.w3schools.com/images/w3schools_green.jpg)' }}
-        // onClick={}
+        style={{ backgroundImage: 'url(https://www.elegantthemes.com/blog/wp-content/uploads/2019/04/buzzfeed-quiz.jpg)' }}
         to={`/updateQuiz/${id}`}
       />
       <div className="collection-footer">
         <span className="name">{titles}</span>
-        {/* <button className="price">{ID}</button> */}
       </div>
-      {/* <CustomButton onClick={() => addItem(item)} inverted> Add To Cart </CustomButton> */}
     </div>
   );
 };

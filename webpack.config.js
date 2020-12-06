@@ -77,5 +77,5 @@ module.exports = {
 
     // new MiniCssExtractPlugin({ filename: isDevelopment ? '[name].css' : '[name].[hash].css', chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css' }),
   ],
-  // watch: true,
+  watch: true,
 };

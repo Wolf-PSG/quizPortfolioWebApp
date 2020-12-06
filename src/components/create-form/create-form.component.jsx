@@ -84,7 +84,7 @@ const CreateQuestion = (state) => {
   return (
     <div className="question-form">
       <form className="questions-form" onSubmit={(e) => e.preventDefault()} encType="multipart/form-data" >
-        <div className="form-input-material">
+        <div className="form-input">
           {/*  htmlFor is to tell react what thehtml entered is going to be for */}
         </div>
               <input
@@ -92,23 +92,20 @@ const CreateQuestion = (state) => {
                 name="photo"
                 onChange={handleFileChange}
               />
-              {/* <button type="submit" className="btn" onClick={handleImageUpload}> submit </button> */}
         { imageState ? (
-        <img src={imageState} alt=' Placeholder '/>) : <div/>}
+        <img src={imageState} alt=' Your image here '/>) : <div/>}
           <h2> Question Title </h2>
           <input
               type="text"
               id="question"
-              className="form-control-material"
               onChange={handleChange}
             />
-        <div className="form-input-material">
+        <div className="form-input">
           <h1 htmlFor="answers"> Answers </h1>
-          <div className="form-input-material">
+          <div className="form-input">
             <input
               type="text"
               id="answerSelectionOne"
-              className="form-control-material"
               onChange={handleChange}
             />
             <input type="radio" name="correctAnswer" id="correctAnswer" value={1} onClick={handleChange} />
@@ -117,7 +114,6 @@ const CreateQuestion = (state) => {
               type="text"
 
               id="answerSelectionTwo"
-              className="form-control-material"
               onChange={handleChange}
             />
             <input type="radio" name="correctAnswer" id="correctAnswer" value={2} onClick={handleChange} />
@@ -126,7 +122,6 @@ const CreateQuestion = (state) => {
             <input
               type="text"
               id="answerSelectionThree"
-              className="form-control-material"
               onChange={handleChange}
             />
             <input type="radio" name="correctAnswer" id="correctAnswer" value={3} onClick={handleChange} />
@@ -135,7 +130,6 @@ const CreateQuestion = (state) => {
             <input
               type="text"
               id="answerSelectionFour"
-              className="form-control-material"
               onChange={handleChange}
             />
             <input type="radio" name="correctAnswer" id="correctAnswer" value={4} onClick={handleChange} />

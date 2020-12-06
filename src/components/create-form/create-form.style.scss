@@ -1,12 +1,8 @@
 
 
-.form-input-material {
+.form-input {
   --input-default-border-color: white;
   --input-border-bottom-color: white;
-  
-  input {
-    // color: white;
-  }
 }
 
 .question-form {
@@ -32,7 +28,7 @@
     margin: 0 0 24px 0;
   }
 
-  .form-input-material {
+  .form-input {
     margin: 12px 0;
   }
 

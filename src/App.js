@@ -34,7 +34,12 @@ const App = () => {
             return <DashBoard />;
           }}
         />
-        <Route path="/dashboard" component={DashBoard} />
+        <Route path="/dashboard" render={() => {
+            if (!globalState.state.loggedIn) {
+              return <SignInAndUp />;
+            }
+            return <DashBoard />;
+          }}/>
         <Route path="/about" component={About} />
         <Route
           path="/quiz"

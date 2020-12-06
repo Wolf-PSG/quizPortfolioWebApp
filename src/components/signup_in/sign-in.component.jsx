@@ -8,18 +8,16 @@ import { store } from '../../store/store';
 // import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
 import './sign-in.style.scss';
 
-
 axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
-      config.headers.authorization = `Bearer ${token}`;
+    config.headers.authorization = `Bearer ${token}`;
     return config;
   },
   (error) => Promise.reject(error),
 );
 
 const SignIn = (props) => {
-
   const globalState = useContext(store);
   const { dispatch } = globalState;
   const history = useHistory();
@@ -47,7 +45,6 @@ const SignIn = (props) => {
         // console.log(res);
         handleSuccess(res.data);
       }).catch((err) => console.log(err));
-
     } catch (error) {
       console.error(error);
     }

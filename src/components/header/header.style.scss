@@ -33,7 +33,7 @@
 			border-radius: 50px;
 			color: #eee;
 			position: relative;
-			transition: 3s;
+			transition: 200ms;
 			-webkit-tap-highlight-color: transparent;
 			display: flex;
 			align-items: center;
@@ -52,7 +52,7 @@
 			top: 0;
 			left: 50%;
 			overflow: hidden;
-			transition: 500ms;
+			transition: 200ms;
 		}
 		
 		.noselect {

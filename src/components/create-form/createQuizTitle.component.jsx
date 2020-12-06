@@ -1,9 +1,8 @@
 import React, { useState, useContext } from 'react';
-import {useHistory}  from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './create-form.style.scss';
 import { store } from '../../store/store';
-
 
 axios.interceptors.request.use(
   async (config) => {
@@ -22,60 +21,60 @@ const CreateQuizTitle = () => {
     user: globalUserState.state._id,
   });
 
-//   const [file, setFile] = useState('');
-//   const [imageState, setImageState] = useState({
-//     file: null,
-//   });
+  //   const [file, setFile] = useState('');
+  //   const [imageState, setImageState] = useState({
+  //     file: null,
+  //   });
 
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setQuizPost({ ...quizPost, [id]: value });
+    setQuizPost({
+      ...quizPost,
+      [id]: value,
+    });
   };
 
   const handleSuccessQuiz = async (e) => {
     e.preventDefault();
-    const {title, user } = quizPost;
-    const newPost = {title, user}
-    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz', newPost).then((res) => {
-    const {id} = res.data.data.data
-    history.push({
-      pathname:"/createQuizzes",
-      state: {id},
-    })
-    }, (error) => {
-      console.log(error);
-    })
+    const { title, user } = quizPost;
+    const newPost = {
+      title,
+      user,
+    };
+    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/quiz', newPost).then(
+      (res) => {
+        const { id } = res.data.data.data;
+        history.push({
+          pathname: '/createQuizzes',
+          state: {
+            id,
+          },
+        });
+      },
+      (error) => {
+        console.log(error);
+      },
+    );
   };
-
-//   const handleImageUpload = (e) => {
-//     e.preventDefault();
-//     const formData = new FormData();
-//     formData.append('photo', file);
-//     axios.post(uploadAPI, formData).then(res => setPost({...post, image: res.data.file}));
-//   }
-
-//   const handleFileChange = (e) => {
-//     console.log(e.target.files);
-//     const image = e.target.files[0];
-//     console.log(image);
-//     setFile(image);
-//     setImageState(URL.createObjectURL(image));
-//   }
-
   return (
     <div className="question-form">
       <form className="quizTitle-form" onSubmit={handleSuccessQuiz}>
         <div>
           <label> Quiz Title </label>
-          <input
-            type="text"
-            id="title"
-            className="form-control-material"
-            onChange={handleChange}
-          />
-          <button type="submit" className="btn"> Submit Quiz Title </button>
+          {' '}
+          <input type="text" id="title" className="form-control-material" onChange={handleChange} />
+          {' '}
+          <button type="submit" className="btn">
+            {' '}
+            Submit Quiz Title
+            {' '}
+            {' '}
+          </button>
+          {' '}
         </div>
+        {' '}
       </form>
+      {' '}
     </div>
   );
 };
