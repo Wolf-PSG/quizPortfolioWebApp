@@ -1,10 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { store } from '../../store/store';
-
-// import CustomButton from '../../components/custom-button/custom-button.component';
-// import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
 import './sign-in.style.scss';
 
 axios.interceptors.request.use(
@@ -36,17 +35,12 @@ const SignIn = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/users/login', post).then((res) => {
-        localStorage.setItem('token', res.data.token);
-        // setJwt(res.data.token);
-        // console.log(res);
-        handleSuccess(res.data);
-      }).catch((err) => console.log(err));
-    } catch (error) {
-      console.error(error);
-    }
+    await axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/users/login', post).then((res) => {
+      localStorage.setItem('token', res.data.token);
+      // setJwt(res.data.token);
+      // console.log(res);
+      handleSuccess(res.data);
+    }).catch(() => toast.dark('Details are not correct'));
   };
 
   const handleChange = (e) => {
@@ -75,6 +69,7 @@ const SignIn = (props) => {
 							Sign in with Google{' '}
 						</button> */}
       </form>
+      <ToastContainer />
     </div>
   );
 };
