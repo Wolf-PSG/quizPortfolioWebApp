@@ -44,7 +44,7 @@ const CreateQuestion = (state) => {
           setQuizPost([...quizPost, res.data.id]);
           toast.dark('Question Created');
         })
-        .catch(() => { toast.dark('Error in submitting question, try again')});
+        .catch(() => { toast.dark('Error in submitting question, try again'); });
       setPost({
         quizID: id,
         question: '',
@@ -111,14 +111,15 @@ const CreateQuestion = (state) => {
             <input
               type="text"
               id="answerSelectionOne"
+              checked={post.correctAnswer == '1'}
               onChange={handleChange}
             />
             <input type="radio" name="correctAnswer" id="correctAnswer" value={1} onClick={handleChange} />
 
             <input
               type="text"
-
               id="answerSelectionTwo"
+              checked={post.correctAnswer == '2'}
               onChange={handleChange}
             />
             <input type="radio" name="correctAnswer" id="correctAnswer" value={2} onClick={handleChange} />
@@ -127,6 +128,7 @@ const CreateQuestion = (state) => {
             <input
               type="text"
               id="answerSelectionThree"
+              checked={post.correctAnswer == '3'}
               onChange={handleChange}
             />
             <input type="radio" name="correctAnswer" id="correctAnswer" value={3} onClick={handleChange} />
@@ -135,6 +137,7 @@ const CreateQuestion = (state) => {
             <input
               type="text"
               id="answerSelectionFour"
+              checked={post.correctAnswer == '4'}
               onChange={handleChange}
             />
             <input type="radio" name="correctAnswer" id="correctAnswer" value={4} onClick={handleChange} />

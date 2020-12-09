@@ -2,8 +2,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import Play from './play.component';
 import { ToastContainer, toast } from 'react-toastify';
+import Play from './play.component';
 import 'react-toastify/dist/ReactToastify.css';
 import { scoreStore } from '../../store/scoreStore';
 
@@ -25,25 +25,33 @@ const PlayQuiz = () => {
   const searchID = pathname.split('/playQuiz/');
   useEffect(() => {
     async function getQuestions() {
-      const questionsArray = await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question/?quizID=${searchID[1]}`);
-      if (questionsArray.length > 0) {
-        questionsArray.data.data.doc.forEach((element, i) => {
-          const {
-            quizID, image, question, answerSelectionFour, answerSelectionThree, answerSelectionTwo, answerSelectionOne, correctAnswer, _id,
-          } = element;
-          setQuestions((values) => [...values, {
-            quizID: quizID[0].id, id: _id, image, question, answerSelectionOne, answerSelectionTwo, answerSelectionThree, answerSelectionFour, correctAnswer,
-          }]);
-          setPost({ ...post, quizID: quizID[0].id });
+      await axios.get(`https://quiz-maker-psg-api.herokuapp.com/api/v1/question/?quizID=${searchID[1]}`)
+        .then((res) => {
+          console.log(res);
+          const { results } = res.data;
+          const { doc } = res.data.data;
+          console.log(results);
+          console.log(doc);
+          if (results > 0) {
+            doc.forEach((element) => {
+              const {
+                quizID, image, question, answerSelectionFour, answerSelectionThree, answerSelectionTwo, answerSelectionOne, correctAnswer, _id,
+              } = element;
+              setQuestions((values) => [...values, {
+                quizID: quizID[0].id, id: _id, image, question, answerSelectionOne, answerSelectionTwo, answerSelectionThree, answerSelectionFour, correctAnswer,
+              }]);
+              setPost({ ...post, quizID: quizID[0].id });
+            });
+            // setQuiz({ ...quiz, title: quizDoc.title, questions: quizDoc.questions});
+            return setLoading(false);
+          }
+        })
+        .catch(() => {
+          setLoading(false);
+          return setMessage('No Questions in This Quiz.');
         });
-        // setQuiz({ ...quiz, title: quizDoc.title, questions: quizDoc.questions});
-        return setLoading(false);
-      }
-      setLoading(false);
-      return setMessage('No Questions in This Quiz.');
     }
     getQuestions();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -56,11 +64,13 @@ const PlayQuiz = () => {
     const scoredPost = post;
     scoredPost.score = score;
     e.preventDefault();
-    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/score', scoredPost).catch(() => {toast.dark('Score was unable to be sent')});
-    history.push({
-      pathname: '/finishQuiz',
-      state: { score },
-    });
+    axios.post('https://quiz-maker-psg-api.herokuapp.com/api/v1/score', scoredPost).then((res) => {
+      console.log(res);
+      history.push({
+        pathname: '/finishQuiz',
+        state: { score },
+      });
+    }).catch(() => { toast.dark('Score was unable to be sent'); });
   };
 
   return (
@@ -84,7 +94,7 @@ const PlayQuiz = () => {
           </form>
           <div>
             { questions.map((element, i) => (
-              <Play className="hidden" key={i} {...element} />
+              <Play className="hidden" key={`${element}_${i}`} {...element} />
             ))}
           </div>
         </div>

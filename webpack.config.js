@@ -72,7 +72,10 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    new Serve({ static: outputPath }),
+    new Serve({
+      static: outputPath,
+      historyFallback: true,
+    }),
     // new FaviconsWebpackPlugin()
 
     // new MiniCssExtractPlugin({ filename: isDevelopment ? '[name].css' : '[name].[hash].css', chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css' }),
