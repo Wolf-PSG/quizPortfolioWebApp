@@ -25,7 +25,7 @@ const CreateQuestion = (state) => {
     answerSelectionTwo: '',
     answerSelectionThree: '',
     answerSelectionFour: '',
-    correctAnswer: '',
+    correctAnswer: 0,
   });
   const [quizPost, setQuizPost] = useState([]);
   const [file, setFile] = useState('');
@@ -52,7 +52,7 @@ const CreateQuestion = (state) => {
         answerSelectionTwo: '',
         answerSelectionThree: '',
         answerSelectionFour: '',
-        correctAnswer: parseInt('', 10),
+        correctAnswer: 0,
         image: '',
       });
       setImageState({ file: null });
@@ -75,9 +75,9 @@ const CreateQuestion = (state) => {
   };
 
   const handleFileChange = (e) => {
-    const image = e.target.files[0];
-    setFile(image);
-    setImageState(URL.createObjectURL(image));
+    const imageFile = e.target.files[0];
+    setFile(imageFile);
+    setImageState(URL.createObjectURL(imageFile));
   };
 
   const handleSuccess = () => {
@@ -103,6 +103,7 @@ const CreateQuestion = (state) => {
         <input
           type="text"
           id="question"
+          value={post.question}
           onChange={handleChange}
         />
         <div className="form-input">
@@ -111,32 +112,39 @@ const CreateQuestion = (state) => {
             <input
               type="text"
               id="answerSelectionOne"
+              value={post.answerSelectionOne}
+
               onChange={handleChange}
             />
-            <input type="radio" name="correctAnswer" id="correctAnswer" value={1} onClick={handleChange} />
+            <input type="radio" name="correctAnswer" id="correctAnswer" value={1} checked={post.correctAnswer === 1} onClick={handleChange} />
 
             <input
               type="text"
               id="answerSelectionTwo"
               onChange={handleChange}
+              value={post.answerSelectionTwo}
+
             />
-            <input type="radio" name="correctAnswer" id="correctAnswer" value={2} onClick={handleChange} />
+            <input type="radio" name="correctAnswer" id="correctAnswer" value={2} checked={post.correctAnswer === 2} onClick={handleChange} />
 
             {' '}
             <input
               type="text"
               id="answerSelectionThree"
+              value={post.answerSelectionThree}
+
               onChange={handleChange}
             />
-            <input type="radio" name="correctAnswer" id="correctAnswer" value={3} onClick={handleChange} />
+            <input type="radio" name="correctAnswer" id="correctAnswer" value={3} checked={post.correctAnswer === 3} onClick={handleChange} />
 
             {' '}
             <input
               type="text"
               id="answerSelectionFour"
+              value={post.answerSelectionFour}
               onChange={handleChange}
             />
-            <input type="radio" name="correctAnswer" id="correctAnswer" value={4} onClick={handleChange} />
+            <input type="radio" name="correctAnswer" id="correctAnswer" value={4} checked={post.correctAnswer === 4} onClick={handleChange} />
 
           </div>
         </div>
